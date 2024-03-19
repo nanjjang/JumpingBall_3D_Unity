@@ -7,23 +7,54 @@ public class BallMoving : MonoBehaviour
     float h;
     float v;
     Rigidbody rb;
-    float JumpingPower = 5f;
-    // Start is called before the first frame update
+    float mouseX = 0.0f;
+    public float jumpingPower = 5f;
+    public float speed = 3f;
+    public float superSpeed = 6f;
+    private Vector3 move;
+    public float senstivity = 5.0f;
+    bool jumping = false;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
-        Vector3 move = new Vector3(h, 0, v);
-
-        if (Input.GetButtonDown("Jump"))
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+        
+        
+        if (Input.GetButtonDown("Jump") && !jumping)
         {
-            move = new Vector3(0, JumpingPower, 0);
+            rb.AddForce(Vector3.up * 250);
+            jumping = true;
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            move = new Vector3(h, 0, v) * superSpeed;
+        }
+
+        Vector3 forwardDirection=transform.forward;
+        forwardDirection.y = 0;
+        move = new Vector3(h, 0, v);
+        move = Quaternion.LookRotation(forwardDirection) * move;
+        
+        
+        mouseX += Input.GetAxis("Mouse X") * senstivity;
+
+        Vector3 angle = new Vector3(0, mouseX, 0);
+        transform.rotation=Quaternion.Euler(angle);
+
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Floor")){
+            jumping = false;
         }
     }
 }
