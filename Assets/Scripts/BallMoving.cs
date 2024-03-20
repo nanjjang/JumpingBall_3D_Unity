@@ -8,10 +8,10 @@ public class BallMoving : MonoBehaviour
     float v;
     Rigidbody rb;
     float mouseX = 0.0f;
-    public float jumpingPower = 5f;
-    public float speed = 3f;
-    public float superSpeed = 6f;
-    private Vector3 move;
+    public float jumpingPower = 250.0f;
+    public float speed;
+    public float superSpeed;
+    Vector3 move;
     public float senstivity = 5.0f;
     bool jumping = false;
 
@@ -23,8 +23,8 @@ public class BallMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
         
         
         if (Input.GetButtonDown("Jump") && !jumping)
@@ -32,17 +32,18 @@ public class BallMoving : MonoBehaviour
             rb.AddForce(Vector3.up * 250);
             jumping = true;
         }
-        else if (Input.GetKey(KeyCode.LeftShift))
-        {
-            move = new Vector3(h, 0, v) * superSpeed;
-        }
+        
 
         Vector3 forwardDirection=transform.forward;
         forwardDirection.y = 0;
         move = new Vector3(h, 0, v);
         move = Quaternion.LookRotation(forwardDirection) * move;
-        
-        
+        transform.position += move * speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.position += move * superSpeed * Time.deltaTime;
+        }
+
         mouseX += Input.GetAxis("Mouse X") * senstivity;
 
         Vector3 angle = new Vector3(0, mouseX, 0);

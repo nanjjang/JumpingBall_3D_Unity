@@ -18,9 +18,9 @@ public class Follow : MonoBehaviour
         yY -= mouseY * sensitivity;
         yY = Mathf.Clamp(yY, -90f, 90f);
 
-        Vector3 offset = new Vector3(0,height,-distance);
+        Vector3 cameraAngle = new Vector3(0,height,-distance);
         Quaternion rotation = Quaternion.Euler(yY,xX,0);
-        transform.position = target.position + rotation * offset;
+        transform.position = target.position + rotation * cameraAngle;
 
         transform.LookAt(target.position + Vector3.up * height);
     }
