@@ -34,6 +34,7 @@ public class BallMoving : MonoBehaviour
         move = new Vector3(horizontal(), 0, vertical());
         move = Quaternion.LookRotation(forwardDirection) * move;
         transform.position += move * speed * Time.deltaTime;
+        
         if (Input.GetKey(KeyCode.LeftShift))
         {
             transform.position += move * superSpeed * Time.deltaTime;
