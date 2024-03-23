@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,9 +13,17 @@ public class GameManager : MonoBehaviour
     {
         stageTotalCount.text = "/ " + totalItemCount;    
     }
+    void Update()
+    {
+        
+    }
     // Update is called once per frame
     public void GetItem(int count)
     {
         playerTotalCount.text=count.ToString();
+    }
+    public void Start()
+    {
+        SceneManager.LoadScene("Ingame-1");
     }
 }
