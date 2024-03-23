@@ -16,11 +16,18 @@ public class BallMoving : MonoBehaviour
     bool jumping = false;
     public Transform SpawnPoint;
     public GameObject Player;
+    public int itemCount;
+    AudioSource audio;
+    public GameManager manager;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         Respawn();
+    }
+    void Awake()
+    {
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,7 +37,7 @@ public class BallMoving : MonoBehaviour
         {
             if (jumping == false)
             {
-                rb.AddForce(Vector3.up * 4000);
+                rb.AddForce(Vector3.up * 4300);
                 jumping = true;
                 Debug.Log(jumping);
             }
@@ -69,6 +76,17 @@ public class BallMoving : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Items")
+        {
+            itemCount++;
+            audio.Play();
+            other.gameObject.SetActive(false);
+            manager.GetItem(itemCount);
+        }
+    }
+
 
     float horizontal()
     {
@@ -88,4 +106,6 @@ public class BallMoving : MonoBehaviour
     {
         Player.transform.position = SpawnPoint.position;
     }
+
+    
 }
