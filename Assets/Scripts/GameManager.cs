@@ -18,8 +18,4 @@ public class GameManager : MonoBehaviour
     {
         playerTotalCount.text=count.ToString();
     }
-    public void Ingame()
-    {
-        SceneManager.LoadScene("Ingame-1");
-    }
 }

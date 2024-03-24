@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class BallMoving : MonoBehaviour
 {
@@ -84,6 +85,11 @@ public class BallMoving : MonoBehaviour
             audio.Play();
             other.gameObject.SetActive(false);
             manager.GetItem(itemCount);
+        }
+
+        if(other.tag == "Finish")
+        {
+            SceneManager.LoadScene("Ingame-2");
         }
     }
 
