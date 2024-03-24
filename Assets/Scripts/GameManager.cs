@@ -13,16 +13,12 @@ public class GameManager : MonoBehaviour
     {
         stageTotalCount.text = "/ " + totalItemCount;    
     }
-    void Update()
-    {
-        
-    }
     // Update is called once per frame
     public void GetItem(int count)
     {
         playerTotalCount.text=count.ToString();
     }
-    public void Start()
+    public void Ingame()
     {
         SceneManager.LoadScene("Ingame-1");
     }
