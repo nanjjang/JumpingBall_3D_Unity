@@ -17,18 +17,12 @@ public class BallMoving : MonoBehaviour
     bool jumping = false;
     public Transform SpawnPoint;
     public GameObject Player;
-    public int itemCount;
-    AudioSource audio;
-    public GameManager manager;
+    int jump_num = 0;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         Respawn();
-    }
-    void Awake()
-    {
-        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,12 +30,18 @@ public class BallMoving : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
+            
             if (jumping == false)
             {
                 rb.AddForce(Vector3.up * 4300);
-                jumping = true;
-                Debug.Log(jumping);
+                jump_num++;
             }
+            if(jump_num >= 2)
+            {
+                jumping = true;
+                jump_num = 0;
+            }
+            
         }
 
         Vector3 moveDirection = transform.forward * vertical() + transform.right * horizontal();
@@ -68,7 +68,6 @@ public class BallMoving : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor")){
             jumping = false;
-            Debug.Log(jumping);
         }
         
         else if (collision.gameObject.CompareTag("Obstacle"))
@@ -79,14 +78,6 @@ public class BallMoving : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Items")
-        {
-            itemCount++;
-            audio.Play();
-            other.gameObject.SetActive(false);
-            manager.GetItem(itemCount);
-        }
-
         if(other.tag == "Finish")
         {
             SceneManager.LoadScene("Ingame-2");
@@ -110,8 +101,6 @@ public class BallMoving : MonoBehaviour
     }
     void Respawn()
     {
-        Player.transform.position = SpawnPoint.position;
+        transform.position = SpawnPoint.position;
     }
-
-    
 }
