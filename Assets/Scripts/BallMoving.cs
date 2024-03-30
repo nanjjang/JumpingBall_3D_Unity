@@ -18,6 +18,8 @@ public class BallMoving : MonoBehaviour
     public Transform SpawnPoint;
     public GameObject Player;
     int jump_num = 0;
+    public SoundManger sound;
+    public SceneManger scene;
 
     void Start()
     {
@@ -35,6 +37,7 @@ public class BallMoving : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * 4300);
                 jump_num++;
+                sound.GetComponent<SoundManger>().Play("jumping");
             }
             if(jump_num >= 2)
             {
@@ -68,11 +71,13 @@ public class BallMoving : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor")){
             jumping = false;
+            sound.GetComponent<SoundManger>().Play("landing");
         }
         
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
             rb.AddForce(Vector3.back * 900, ForceMode.Impulse);
+            sound.GetComponent<SoundManger>().Play("Obs");
         }
     }
 
@@ -81,6 +86,10 @@ public class BallMoving : MonoBehaviour
         if(other.tag == "Finish")
         {
             SceneManager.LoadScene("Ingame-2");
+        }
+        if (other.tag == "The_End") 
+        {
+            scene.GetComponent<SceneManger>().exit();
         }
     }
 
