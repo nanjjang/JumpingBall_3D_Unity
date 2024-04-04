@@ -13,17 +13,11 @@ public class SoundManger : MonoBehaviour
     public AudioClip jump;
     public AudioClip land;
     public AudioClip obstacle;
-    public AudioClip BGM;
     void Awake()
     {
         audio = GetComponent<AudioSource>();
     }
 
-    void Start()
-    {
-        audio.clip = BGM;
-        audio.Play();
-    }
 
     void Update()
     {
