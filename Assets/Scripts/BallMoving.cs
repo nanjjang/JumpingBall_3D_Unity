@@ -85,7 +85,7 @@ public class BallMoving : MonoBehaviour
     {
         if(other.tag == "Finish")
         {
-            SceneManager.LoadScene("Ingame-2");
+            SceneManager.LoadScene("Ingame2");
         }
         if (other.tag == "The_End") 
         {

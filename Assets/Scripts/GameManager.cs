@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int totalItemCount;
     public Text stageTotalCount;
     public Text playerTotalCount;
+    public Text time;
     void Awake()
     {
         stageTotalCount.text = "/ " + totalItemCount;    
@@ -17,5 +18,9 @@ public class GameManager : MonoBehaviour
     public void GetItem(int count)
     {
         playerTotalCount.text=count.ToString();
+    }
+    public void TimerStart(float timer)
+    {
+        time.text = timer.ToString();
     }
 }

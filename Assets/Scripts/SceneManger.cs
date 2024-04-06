@@ -9,10 +9,14 @@ using UnityEngine.UI;
 public class SceneManger : MonoBehaviour
 {
     public GameObject subMenu;
+    public string Ingame1;
+    public string Ingame2;
+    public TimeManager tManager;
 
-    public void Ingame()
+    public void In_game()
     {
-        SceneManager.LoadScene("Ingame-1");
+        SceneManager.LoadScene("Ingame1");
+
     }
     public void Set()
     {
@@ -27,6 +31,21 @@ public class SceneManger : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    void Start()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string currentSceneName = currentScene.name;
+        Debug.Log(currentSceneName);
+        if (currentSceneName == Ingame1)
+        {
+            tManager.Timer();
+        }
+        if (currentSceneName == Ingame2)
+        {
+            tManager.Timer();
+        }
     }
 
     // Update is called once per frame
