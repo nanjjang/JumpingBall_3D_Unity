@@ -4,7 +4,8 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class GameManager : MonoBehaviour
+
+public class GUIManager : MonoBehaviour
 {
     public int totalItemCount;
     public Text stageTotalCount;
@@ -13,12 +14,11 @@ public class GameManager : MonoBehaviour
     public TimeManager tManager;
     void Awake()
     {
-        stageTotalCount.text = "/ " + totalItemCount;    
+        stageTotalCount.text = "/ " + totalItemCount;
     }
-    // Update is called once per frame
     public void GetItem(int count)
     {
-        playerTotalCount.text=count.ToString();
+        playerTotalCount.text = count.ToString();
     }
     public void TimerStart(float timer)
     {

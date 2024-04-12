@@ -9,9 +9,6 @@ using UnityEngine.UI;
 public class SceneManger : MonoBehaviour
 {
     public GameObject subMenu;
-    public string Ingame1;
-    public string Ingame2;
-    public TimeManager tManager;
 
     public void In_game()
     {
@@ -33,21 +30,6 @@ public class SceneManger : MonoBehaviour
         Application.Quit();
     }
 
-    void Start()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        string currentSceneName = currentScene.name;
-        Debug.Log(currentSceneName);
-        if (currentSceneName == Ingame1)
-        {
-            tManager.Timer();
-        }
-        if (currentSceneName == Ingame2)
-        {
-            tManager.Timer();
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -56,5 +38,9 @@ public class SceneManger : MonoBehaviour
             if(subMenu.activeSelf)
                 subMenu.SetActive(false);
             else subMenu.SetActive(true);
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        string currentSceneName = currentScene.name;
+
     }
 }
