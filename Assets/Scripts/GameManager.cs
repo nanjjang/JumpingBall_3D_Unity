@@ -4,24 +4,22 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class GameManager : MonoBehaviour
 {
-    public int totalItemCount;
-    public Text stageTotalCount;
-    public Text playerTotalCount;
-    public Text time;
-    public TimeManager tManager;
+    public GUIManager guiM;
+    public GameObject timee;
+    public GameObject score;
     void Awake()
     {
-        stageTotalCount.text = "/ " + totalItemCount;    
+        GameObject text_time = GameObject.Find("Time");
+        guiM.time = text_time.GetComponent<Text>();
+        GameObject text_playerTotalCount = GameObject.Find("PlayerScore");
+        guiM.playerTotalCount = text_playerTotalCount.GetComponent<Text>();
+        score=GameObject.Find("GUIMng");
+        score.GetComponent<GUIManager>().playerTotalCount = text_playerTotalCount.GetComponent<Text>();
+        timee=GameObject.Find("GUIMng");
+        timee.GetComponent<GUIManager>().time = text_time.GetComponent<Text>();
     }
-    // Update is called once per frame
-    public void GetItem(int count)
-    {
-        playerTotalCount.text=count.ToString();
-    }
-    public void TimerStart(float timer)
-    {
-        time.text = timer.ToString();
-    }
+    
 }
