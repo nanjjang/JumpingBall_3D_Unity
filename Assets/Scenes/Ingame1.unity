@@ -608,6 +608,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79527719}
   m_CullTransparentMesh: 1
+--- !u!1 &107643693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107643695}
+  - component: {fileID: 107643694}
+  m_Layer: 0
+  m_Name: VolumeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &107643694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107643693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4beaea2eea2afce45ab1177c8c8f4584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: 6290a80d508f17e449deac12159c16f6, type: 2}
+  musicSlider: {fileID: 1867592422}
+  SFXSlider: {fileID: 1497847191}
+--- !u!4 &107643695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107643693}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06842819, y: 56.188984, z: 351.5914}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &121989329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,6 +1708,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guiM: {fileID: 276906587}
+  timee: {fileID: 0}
+  score: {fileID: 0}
+  gmng: {fileID: 0}
 --- !u!1 &528962046
 GameObject:
   m_ObjectHideFlags: 0
@@ -4275,7 +4325,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 107643694}
         m_TargetAssemblyTypeName: VolumeManger, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 1
@@ -4872,7 +4922,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 107643694}
         m_TargetAssemblyTypeName: VolumeManger, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -5228,7 +5278,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SManger: {fileID: 2070655518}
-  timer_t: 0
   manager: {fileID: 276906587}
 --- !u!1 &2012832120
 GameObject:
@@ -5290,7 +5339,7 @@ GameObject:
   - component: {fileID: 2070655519}
   - component: {fileID: 2070655518}
   m_Layer: 0
-  m_Name: SceneManger
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5531,7 +5580,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2070655518}
         m_TargetAssemblyTypeName: SceneManger, Assembly-CSharp
         m_MethodName: exit
         m_Mode: 1
@@ -5588,6 +5637,7 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 276906588}
+  - {fileID: 107643695}
   - {fileID: 1983012763}
   - {fileID: 2070655519}
   - {fileID: 528295193}

@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 
 public class TimeManager : MonoBehaviour
 {
     public SceneManger SManger;
+    public GameManager gmanger;
     public static TimeManager instance = null;
-    double timer = 0;
-    public double timer_t;
-    public GUIManager manager;
-    double bestTime = 111111;
-    int countt=0;
-    // Start is called before the first frame update
+    double timer = 0f;
+    public GUIManager uiManager;
+    int bestTime = 0;
+    int lastTime = 0;
+
     void Awake()
     {
-        manager = GetComponent<GUIManager>();
+        Load();
+        Debug.Log(bestTime);
+
         if (instance == null)
         {
             instance = this;
@@ -28,56 +31,59 @@ public class TimeManager : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
-            LoadBestTime();
         }
-        Debug.Log("최고점수는?:" + bestTime);
     }
+
     void Update()
     {
-        if (!SManger.subMenu.activeSelf){
+        if (!SManger.subMenu.activeSelf)
+        {
             timer += Time.deltaTime;
-            timer_t = Math.Truncate(timer);
-            manager.TimerStart(timer_t);
+            uiManager.TimerStart((int)timer);
         }
+    }
+
+    public void TimeStop()
+    {
+        lastTime = (int)timer;
+        myTime = lastTime;
     }
 
     public static TimeManager Instance()
     {
         return instance;
     }
-    public double best_time
+
+    public int best_time
     {
-        get
-        {
-            return bestTime;
-        }
+        get { return bestTime; }
     }
-    public double myTime
+
+    public int myTime
     {
-        get
-        {
-            return timer_t;
-        }
+        get { return lastTime; }
         set
         {
-            timer_t = value;
-
-            if(timer_t < bestTime)
+            lastTime = value;
+            if (bestTime == 0 || lastTime < bestTime)
             {
-                bestTime = timer_t;
-                SaveBestTime();
-                Debug.Log(bestTime);
+                bestTime = lastTime;
+                Debug.Log("최고점수는?:" + bestTime);
+                Save();
+                
             }
         }
     }
-    void SaveBestTime()
+
+    public void Save()
     {
-        PlayerPrefs.SetString("Best Time", bestTime.ToString());
-        manager.Best(bestTime);
+        PlayerPrefs.SetInt("Best Time", bestTime);
+        PlayerPrefs.SetString("Nickname", gmanger.nickname);
     }
-    void LoadBestTime()
+
+    public void Load()
     {
-        string bestTimeAsString = PlayerPrefs.GetString("Best Time");
-        bestTime = double.Parse(bestTimeAsString);
+        bestTime = PlayerPrefs.GetInt("Best Time", 0);
+        PlayerPrefs.GetString("Nickname", "0");
     }
 }

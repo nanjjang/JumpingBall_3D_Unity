@@ -91,6 +91,7 @@ public class BallMoving : MonoBehaviour
         if (other.tag == "The_End") 
         {
             scene.GetComponent<SceneManger>().exit();
+            TimeManager.instance.TimeStop();
         }
     }
 

@@ -11,9 +11,9 @@ public class GUIManager : MonoBehaviour
     //public Text stageTotalCount;
     public Text playerTotalCount;
     public Text time;
-    public Text best;
     public GameManager manager;
     public static GUIManager instance = null;
+    public Text nickname;
     /*void Awake()
     {
         stageTotalCount.text = "/ " + totalItemCount;
@@ -39,12 +39,12 @@ public class GUIManager : MonoBehaviour
     {
         playerTotalCount.text = count.ToString();
     }
-    public void TimerStart(double timer)
+    public void TimerStart(int timer)
     {
         time.text = timer.ToString();
     }
-    public void Best(double best_t)
+    public void Nickname(string name,int time)
     {
-        best.text = best_t.ToString();
+        nickname.text = name.ToString() + ':' + time;
     }
 }
