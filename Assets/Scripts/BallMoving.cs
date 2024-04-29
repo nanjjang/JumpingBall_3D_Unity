@@ -20,7 +20,6 @@ public class BallMoving : MonoBehaviour
     int jump_num = 0;
     public SoundManger sound;
     public SceneManger scene;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();

@@ -9,17 +9,16 @@ public class TimeManager : MonoBehaviour
 {
     public SceneManger SManger;
     public GameManager gmanger;
+    public UserInformantion umanager;
     public static TimeManager instance = null;
     double timer = 0f;
-    public GUIManager uiManager;
-    int bestTime = 0;
+    public GUIManager guiM;
+    int bestTime ;
     int lastTime = 0;
-
     void Awake()
     {
         Load();
         Debug.Log(bestTime);
-
         if (instance == null)
         {
             instance = this;
@@ -39,7 +38,7 @@ public class TimeManager : MonoBehaviour
         if (!SManger.subMenu.activeSelf)
         {
             timer += Time.deltaTime;
-            uiManager.TimerStart((int)timer);
+            guiM.TimerStart((int)timer);
         }
     }
 
@@ -68,9 +67,10 @@ public class TimeManager : MonoBehaviour
             if (bestTime == 0 || lastTime < bestTime)
             {
                 bestTime = lastTime;
-                Debug.Log("최고점수는?:" + bestTime);
+                umanager.Load();
+                guiM.Ranking(umanager.nicknameInputField.text, bestTime);
+                Debug.Log(umanager.nicknameInputField.text + "님의 최고점수는? : " + bestTime);
                 Save();
-                
             }
         }
     }
@@ -78,12 +78,11 @@ public class TimeManager : MonoBehaviour
     public void Save()
     {
         PlayerPrefs.SetInt("Best Time", bestTime);
-        PlayerPrefs.SetString("Nickname", gmanger.nickname);
     }
 
     public void Load()
     {
         bestTime = PlayerPrefs.GetInt("Best Time", 0);
-        PlayerPrefs.GetString("Nickname", "0");
+
     }
 }

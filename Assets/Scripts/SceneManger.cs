@@ -30,17 +30,12 @@ public class SceneManger : MonoBehaviour
         Application.Quit();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetButtonDown("Cancel"))
-            if(subMenu.activeSelf)
+            if (subMenu.activeSelf)
                 subMenu.SetActive(false);
             else subMenu.SetActive(true);
-
-        Scene currentScene = SceneManager.GetActiveScene();
-        string currentSceneName = currentScene.name;
-
     }
 }
