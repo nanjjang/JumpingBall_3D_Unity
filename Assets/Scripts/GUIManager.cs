@@ -46,6 +46,6 @@ public class GUIManager : MonoBehaviour
     }
     public void Ranking(string nickname, int time)
     {
-        nAme.text = nickname.ToString() + time;
+        nAme.text = $"{nickname} {time}";
     }
-}
+}           

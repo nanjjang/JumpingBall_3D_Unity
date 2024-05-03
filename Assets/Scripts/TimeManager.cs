@@ -14,7 +14,9 @@ public class TimeManager : MonoBehaviour
     double timer = 0f;
     public GUIManager guiM;
     int bestTime ;
+    string bestPlayer;
     int lastTime = 0;
+    public Manager manager;
     void Awake()
     {
         Load();
@@ -67,22 +69,22 @@ public class TimeManager : MonoBehaviour
             if (bestTime == 0 || lastTime < bestTime)
             {
                 bestTime = lastTime;
-                umanager.Load();
-                guiM.Ranking(umanager.nicknameInputField.text, bestTime);
-                Debug.Log(umanager.nicknameInputField.text + "님의 최고점수는? : " + bestTime);
+                Debug.Log(manager.player_name);
+                guiM.Ranking(manager.player_name, bestTime);
                 Save();
-            }
+            }   
         }
     }
 
     public void Save()
     {
         PlayerPrefs.SetInt("Best Time", bestTime);
+        PlayerPrefs.SetString("Nick Name", manager.player_name);
     }
 
     public void Load()
     {
         bestTime = PlayerPrefs.GetInt("Best Time", 0);
-
+        bestPlayer = PlayerPrefs.GetString("Nick Name", null);
     }
 }

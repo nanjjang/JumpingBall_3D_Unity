@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     GameObject smng;
     GameObject gameM;
     GameObject aa;
+    GameObject text_name;
     void Awake()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -49,12 +50,20 @@ public class GameManager : MonoBehaviour
             tmng.GetComponent<TimeManager>().umanager = umanager.GetComponent<UserInformantion>();
         }
 
-        gameM = GameObject.Find("GameManager");
-        guimng = GameObject.Find("GUIMng");
-        guimng.GetComponent<GUIManager>().manager = gameM.GetComponent<GameManager>();
-        
+        if(currentSceneName == "StartMenu")
+        {
+            text_name = GameObject.Find("Ranker");
+            guimng = GameObject.Find("GUIMng");
+            guimng.GetComponent<GUIManager>().nAme = text_name.GetComponent<Text>();
+            
+        }
+
         umanager = GameObject.Find("UserInform");
         aa = GameObject.Find("a");
         aa.GetComponent<Manager>().umanager = umanager.GetComponent <UserInformantion>();
+        
+        gameM = GameObject.Find("GameManager");
+        guimng = GameObject.Find("GUIMng");
+        guimng.GetComponent<GUIManager>().manager = gameM.GetComponent<GameManager>();
     }
 }

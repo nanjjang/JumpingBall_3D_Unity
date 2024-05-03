@@ -7,12 +7,11 @@ using UnityEngine.EventSystems;
 public class UserInformantion : MonoBehaviour
 {
     public InputField nicknameInputField;
-    void input(InputField input) // enter 쳤을때 호출.
-    {
-        Save();
+    void Input(InputField input) // enter 쳤을때 호출.
+    {                                                                   
         if (input.text.Length > 0)
         {
-            Debug.Log(input.text);
+            Debug.Log(input);
         }
         else if (input.text.Length == 0)
         {
@@ -20,16 +19,7 @@ public class UserInformantion : MonoBehaviour
         }
     }
     void Start()
-    {        
-        nicknameInputField.onSubmit.AddListener(delegate { input(nicknameInputField); });
-    }
-    public void Save()//닉네임 저장
     {
-        PlayerPrefs.SetString("Nick Name", nicknameInputField.text);
-    }
-
-    public void Load()//저장된 닉네임 불러오기
-    {
-        nicknameInputField.text = PlayerPrefs.GetString("Nick Name", "0");
+        nicknameInputField.onSubmit.AddListener(delegate { Input(nicknameInputField); });
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4487648, g: 0.49882215, b: 0.5756906, a: 1}
+  m_IndirectSpecularColor: {r: 0.44876528, g: 0.49882305, b: 0.5756917, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3112,7 +3112,7 @@ MonoBehaviour:
   playerTotalCount: {fileID: 79527721}
   time: {fileID: 1433801683}
   manager: {fileID: 528295194}
-  name: {fileID: 0}
+  nAme: {fileID: 0}
 --- !u!4 &890165581
 Transform:
   m_ObjectHideFlags: 0
@@ -6251,7 +6251,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 800.69, y: 483.92}
+  m_AnchoredPosition: {x: 800.69, y: 450.2889}
   m_SizeDelta: {x: 110.2876, y: 67.8341}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1433801683
@@ -6579,7 +6579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 901.97235, y: 480.6311}
+  m_AnchoredPosition: {x: 901.97235, y: 447}
   m_SizeDelta: {x: 92.2732, y: 98.7378}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514027995
