@@ -9,7 +9,10 @@ public class Manager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        
+    }
+    public void Name()
+    {
         player_name = umanager.nicknameInputField.text;
-        Debug.Log(player_name);
     }
 }

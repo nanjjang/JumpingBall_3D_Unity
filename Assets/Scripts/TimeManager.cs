@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {
@@ -17,10 +18,12 @@ public class TimeManager : MonoBehaviour
     string bestPlayer;
     int lastTime = 0;
     public Manager manager;
+
     void Awake()
     {
         Load();
-        Debug.Log(bestTime);
+        Debug.Log(bestPlayer + " " +  bestTime);
+        guiM.Ranking(bestPlayer, bestTime);
         if (instance == null)
         {
             instance = this;
@@ -35,9 +38,13 @@ public class TimeManager : MonoBehaviour
         }
     }
 
+
     void Update()
     {
-        if (!SManger.subMenu.activeSelf)
+        Scene currentScene = SceneManager.GetActiveScene();
+        string currentSceneName = currentScene.name;
+
+        if (currentSceneName == "Ingame1" || currentSceneName == "Ingame2" && !SManger.subMenu.activeSelf)
         {
             timer += Time.deltaTime;
             guiM.TimerStart((int)timer);
@@ -69,8 +76,7 @@ public class TimeManager : MonoBehaviour
             if (bestTime == 0 || lastTime < bestTime)
             {
                 bestTime = lastTime;
-                Debug.Log(manager.player_name);
-                guiM.Ranking(manager.player_name, bestTime);
+                Debug.Log("Rank");
                 Save();
             }   
         }
