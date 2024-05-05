@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
             gameM = GameObject.Find("GameManager");
             tmng = GameObject.Find("TimeManger");
-            tmng.GetComponent<TimeManager>().gmanger = gameM.GetComponent<GameManager>();
+            tmng.GetComponent<TimeManager>().manger = gameM.GetComponent<GameManager>();
 
             umanager = GameObject.Find("UserInform");
             tmng = GameObject.Find("TimeManger");
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             
             aa = GameObject.Find("a");
             tmng = GameObject.Find("TimeManger");
-            tmng.GetComponent<TimeManager>().manager = aa.GetComponent<Manager>();
+            tmng.GetComponent<TimeManager>().manager = aa.GetComponent<Manager>();  
         }
 
         if(currentSceneName == "StartMenu")

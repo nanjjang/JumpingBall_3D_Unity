@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class TimeManager : MonoBehaviour
 {
     public SceneManger SManger;
-    public GameManager gmanger;
+    public GameManager manger;
     public UserInformantion umanager;
     public static TimeManager instance = null;
     double timer = 0f;
@@ -23,6 +23,9 @@ public class TimeManager : MonoBehaviour
     {
         Load();
         Debug.Log(bestPlayer + " " +  bestTime);
+        Debug.Log(guiM);
+        Debug.Log(bestPlayer);
+        Debug.Log(bestTime);
         guiM.Ranking(bestPlayer, bestTime);
         if (instance == null)
         {
@@ -44,10 +47,13 @@ public class TimeManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         string currentSceneName = currentScene.name;
 
-        if (currentSceneName == "Ingame1" || currentSceneName == "Ingame2" && !SManger.subMenu.activeSelf)
+        if (currentSceneName == "Ingame1" || currentSceneName == "Ingame2")
         {
-            timer += Time.deltaTime;
-            guiM.TimerStart((int)timer);
+            if (!SManger.subMenu.activeSelf)
+            {
+                timer += Time.deltaTime;
+                guiM.TimerStart((int)timer);
+            }   
         }
     }
 
