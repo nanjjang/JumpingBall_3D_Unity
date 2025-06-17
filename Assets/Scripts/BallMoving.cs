@@ -48,6 +48,10 @@ public class BallMoving : MonoBehaviour
 
         Vector3 moveDirection = transform.forward * vertical() + transform.right * horizontal();
         moveDirection.Normalize(); // 이동 방향을 정규화
+        if(scene.subMenu.activeSelf)
+        {
+            moveDirection = Vector3.zero;
+        }
         rb.AddForce(moveDirection * speed, ForceMode.Impulse);
         
         if (Input.GetKey(KeyCode.LeftShift))
@@ -78,14 +82,20 @@ public class BallMoving : MonoBehaviour
             rb.AddForce(Vector3.back * 900, ForceMode.Impulse);
             sound.GetComponent<SoundManger>().Play("Obs");
         }
+
+        if (collision.gameObject.CompareTag("Back"))
+        {
+            SceneManager.LoadScene("Ingame1");
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Finish")
         {
-            SceneManager.LoadScene("Ingame2");
-
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            int nextSceneIndex = currentSceneIndex + 1;
+            SceneManager.LoadScene(nextSceneIndex);
         }
         if (other.tag == "The_End") 
         {
